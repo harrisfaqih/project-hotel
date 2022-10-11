@@ -10,6 +10,6 @@ package com.mycompany.project_hotel;
  */
 public class hotel {
     public static void main(String[] args) {
-        
+        //test
     }
 }
