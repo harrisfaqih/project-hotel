@@ -470,15 +470,7 @@ private void delete(){
 
     private void jumlahkmrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahkmrActionPerformed
         // TODO add your handling code here:
-        jeniskmr.read();
-        if(dr.isSelected())
-        {
-        } else if {
-            hargatotal.setText(String.valueOf(dr));
-        }
-        else if {
-            hargatotal.setText(String.valueOf());
-        }
+
     }//GEN-LAST:event_jumlahkmrActionPerformed
 
     /**
