@@ -14,6 +14,8 @@ public class hotel {
     private String ism;
     private String koota;
     private int tootal;
+        private int harg;
+
 
     public String Getqism() {
         return qism;
@@ -45,6 +47,13 @@ public class hotel {
 
     public void settootal(int tootal) {
         this.tootal = tootal;
+    }
+    public int getharg() {
+        return harg;
+    }
+
+    public void setharg(int harg) {
+        this.harg = harg;
     }
     public static void main(String[] args) {
         

@@ -35,6 +35,7 @@ public class hotelmain extends javax.swing.JFrame {
         initComponents();
         read();
     }
+    
     private void read(){
         m.read(tbdata);
     }
@@ -117,7 +118,12 @@ public class hotelmain extends javax.swing.JFrame {
 
         jLabel5.setText("jumlah kamar yang dipesan");
 
-        jumlahkmr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jumlahkmr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 orng", "2 orng", "3 orng", "4 orng" }));
+        jumlahkmr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jumlahkmrActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Extra bed");
 
@@ -143,12 +149,32 @@ public class hotelmain extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tbdata);
 
         tblpesan.setText("Pesan");
+        tblpesan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tblpesanActionPerformed(evt);
+            }
+        });
 
         tbleditpesan.setText("edit pesanan");
+        tbleditpesan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbleditpesanActionPerformed(evt);
+            }
+        });
 
         tblhapuspesan.setText("hapus pesanan");
+        tblhapuspesan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tblhapuspesanActionPerformed(evt);
+            }
+        });
 
         tblstruk.setText("cetak pesanan");
+        tblstruk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tblstrukActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,6 +327,159 @@ public class hotelmain extends javax.swing.JFrame {
             System.out.println("pilih yang benar");
         }
     }//GEN-LAST:event_jeniskmrActionPerformed
+    private void save(){
+        
+        if(validasi()){
+        //membuat kapan di simpan dan di update
+            if(TAG){
+            create();
+            }else{ 
+            update();
+            }
+        }
+        else{
+           JOptionPane.showMessageDialog(rootPane, "Silahkan isi data terlebih dahulu");    
+    }
+        clear();
+    }
+    private boolean validasi(){
+        if(name.getText().isEmpty()
+            // ||inptwaktuberangkat.getText().isEmpty()
+              || jumlahkmr.getSelectedIndex()==0
+             || jeniskmr.getSelectedIndex()==0)
+          
+                         {
+            return false;
+        }
+        return true;
+    }
+    private void clear(){
+        TAG=true;
+        //agar bisa input nim lg
+        name.setEnabled(true);
+        
+        name.setText("");
+        jeniskmr.setSelectedItem(0);
+       // buttonGroup1.clearSelection();
+        hargatotal.setText("");
+       // inptwaktuberangkat.setText("");
+        read();
+        
+    
+    }
+    
+    private void create(){
+     
+       hotel b = new hotel();
+       // menampung data
+       // set adalah interjer dan akan di ubah ke string menggunakan value
+      //  Tbdata.setTabel();
+      m.create(b);
+        b.setism(String.valueOf(name.getText()));
+        b.setqism(String.valueOf( jeniskmr.getSelectedItem()));
+        b.setkoota(String.valueOf( jumlahkmr.getSelectedItem()));
+     //   b.setsaah(Integer.valueOf(inptwaktuberangkat.getText()));
+        b.settootal(Integer.valueOf(hari.getText()));
+        b.setharg(Integer.valueOf(hargatotal.getText()));
+  
+        m.create(b);
+       clear() ; 
+}
+    private void update(){
+        hotel b = new hotel();
+        //menampung data
+        //set adalah interjer dan akan di ubah ke string menggunakan value
+       b.setism(String.valueOf(name.getText()));
+        b.setqism(String.valueOf( jeniskmr.getSelectedItem()));
+        b.setkoota(String.valueOf( jumlahkmr.getSelectedItem()));
+     //   b.setsaah(Integer.valueOf(inptwaktuberangkat.getText()));
+        b.settootal(Integer.valueOf(hari.getText()));
+        b.setharg(Integer.valueOf(hargatotal.getText()));
+
+       m.update(b);
+       clear();
+        
+    }
+    private void tblpesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tblpesanActionPerformed
+        // TODO add your handling code here:
+        save();
+        buttonGroup1.clearSelection();
+       // outputhargasatuan.setText("");
+        jeniskmr.setSelectedItem("");
+        name.setText("");
+        hargatotal.setText("");
+      //  inptjumlahtiket.setText("");
+        jumlahkmr.setSelectedItem("");
+        hari.setText(""); 
+       // inptwaktuberangkat.setText("");
+      
+        jeniskmr.getSelectedItem();
+        
+    }//GEN-LAST:event_tblpesanActionPerformed
+
+    private void tblstrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tblstrukActionPerformed
+        // TODO add your handling code here:
+        buttonGroup1.clearSelection();
+        /*float angkaa = Float.parseFloat(inptjumlahuang3.getText());
+        
+        inptjumlahuang3.setText(Float.toString(angkaa));
+        DecimalFormat angka = new DecimalFormat("###,###,###");
+        inptjumlahuang3.setText(""+angka.format(angkaa));*/
+        
+        struk.setText(
+               
+        "Nama Pembeli           \t: "+name.getText()+"\n"+
+        "Jenis kamar            \t: "+jeniskmr.getSelectedItem()+"\n"+
+        "Jumlah kamar          \t: "+jumlahkmr.getSelectedItem()+"\n"+
+        "Jumlah hari pesanan    \t: "+hari.getText()+"\n\n"+
+        "Pembayaran Total       \t: "+hargatotal.getText()+"\n");
+       // "Uang Terima            \t: "+inptjumlahuang.getText()+"\n"+
+       // "Uang Kembali           \t: "+inptjumlahuang3.getText()+"\n");
+    }//GEN-LAST:event_tblstrukActionPerformed
+private void delete(){
+            //pencetan ubah ada data belum
+            int count = tbdata.getSelectedRowCount();
+            if (count>0){
+                
+                int pilihan =JOptionPane.NO_OPTION;
+                pilihan = JOptionPane.showConfirmDialog(rootPane,"Yakin Ingin Dihapus?","informasi",JOptionPane.YES_NO_OPTION, 1);
+                if (pilihan == JOptionPane.YES_OPTION){
+            
+            int row =tbdata.getSelectedRow();
+            
+            //mengubah integer ke string
+           m.delete(String.valueOf(tbdata.getValueAt(row, 0).toString()));
+          
+          clear();
+           
+                }   
+            }else{
+                    JOptionPane.showMessageDialog(rootPane, "Data belum Dipilh!");
+            }
+            
+        }
+    private void tblhapuspesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tblhapuspesanActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_tblhapuspesanActionPerformed
+
+    private void tbleditpesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbleditpesanActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tbleditpesanActionPerformed
+
+    private void jumlahkmrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahkmrActionPerformed
+        // TODO add your handling code here:
+        jeniskmr.read();
+        if(dr.isSelected())
+        {
+        } else if {
+            hargatotal.setText(String.valueOf(dr));
+        }
+        else if {
+            hargatotal.setText(String.valueOf());
+        }
+    }//GEN-LAST:event_jumlahkmrActionPerformed
 
     /**
      * @param args the command line arguments

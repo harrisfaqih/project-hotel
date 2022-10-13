@@ -249,13 +249,16 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="1 orng"/>
+            <StringItem index="1" value="2 orng"/>
+            <StringItem index="2" value="3 orng"/>
+            <StringItem index="3" value="4 orng"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlahkmrActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -354,21 +357,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tblpesanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbleditpesan">
       <Properties>
         <Property name="text" type="java.lang.String" value="edit pesanan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbleditpesanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tblhapuspesan">
       <Properties>
         <Property name="text" type="java.lang.String" value="hapus pesanan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tblhapuspesanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tblstruk">
       <Properties>
         <Property name="text" type="java.lang.String" value="cetak pesanan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tblstrukActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
